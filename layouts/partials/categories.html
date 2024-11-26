@@ -1,9 +1,12 @@
-{{ with site.Taxonomies.categories }}
+{{ $taxonomy := .taxonomy | default "categories" }}
+{{ with (index site.Taxonomies $taxonomy) }}
   <nav class="categories">
+    <h3>{{ $taxonomy }}</h3>
     <ul>
       {{ range . }}
-        <li><a href="{{ .Page.RelPermalink }}">{{ .Page.Title }}</a></li>
+        <li><a href="{{ .Page.Permalink }}">{{ .Page.Title }}</a></li>
       {{ end }}
     </ul>
   </nav>
 {{ end }}
+
